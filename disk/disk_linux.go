@@ -216,7 +216,7 @@ var fsTypeMap = map[int64]string{
 // and ignore all others (e.g. memory partitions such as /dev/shm)
 //
 // should use setmntent(3) but this implement use /etc/mtab file
-func Partitions(all bool) ([]PartitionStat, error) {
+func Partitions(all bool) (AllPartitionStat, error) {
 	filename := common.HostEtc("mtab")
 	lines, err := common.ReadLines(filename)
 	if err != nil {
@@ -228,7 +228,7 @@ func Partitions(all bool) ([]PartitionStat, error) {
 		return nil, err
 	}
 
-	ret := make([]PartitionStat, 0, len(lines))
+	ret := make(AllPartitionStat, 0, len(lines))
 
 	for _, line := range lines {
 		fields := strings.Fields(line)

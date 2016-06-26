@@ -32,6 +32,8 @@ type PartitionStat struct {
 	Opts       string `json:"opts"`
 }
 
+type AllPartitionsStat []PartitionStat
+
 type IOCountersStat struct {
 	ReadCount    uint64 `json:"readCount"`
 	WriteCount   uint64 `json:"writeCount"`
@@ -49,7 +51,7 @@ func (d UsageStat) String() string {
 	return string(s)
 }
 
-func (d PartitionStat) String() string {
+func (d AllPartitionStat) String() string {
 	s, _ := json.Marshal(d)
 	return string(s)
 }
